@@ -1,7 +1,6 @@
-// add grid display and grids to the container div
+// add grid display and grids to the container div via javascript
 const container = document.querySelector(".container");
-container.style.cssText = "display: grid; grid-template-rows: repeat(16, 50px); grid-template-columns: repeat(16, 50px); grid-gap: 5px;";
-
+container.style.cssText = "width: 100%; display: grid; grid-template-rows: repeat(16, 1fr); grid-template-columns: repeat(16, 1fr); grid-gap: 5px;";
 
 // create and add the 16 x 16 divs into the container, oh lord save us all
 function createGridDivs(targetNoGrid = 16) {
@@ -19,13 +18,15 @@ function createGridDivs(targetNoGrid = 16) {
 };
 createGridDivs();
 
-
-// create button
+// create reset button
 const resetButn = document.createElement("button");
 resetButn.id = "resetButn";
 resetButn.textContent = "Reset Canvas";
-const resetDiv = document.querySelector(".button");
+
+// adding the reset button into div with .buttonDiv class
+const resetDiv = document.querySelector(".buttonDiv");
 resetDiv.appendChild(resetButn);
+
 // event listener to reset the canvas on click
 resetButn.addEventListener("click", () => {
     let divs = document.querySelectorAll(".pixels");
@@ -33,6 +34,7 @@ resetButn.addEventListener("click", () => {
         item.style.cssText = "background: white";
     });
 });
+
 // event listener to modify the number of grids available (max 100)
 resetButn.addEventListener("click", () => {
     const display = document.querySelector(".display");
@@ -40,14 +42,14 @@ resetButn.addEventListener("click", () => {
     let newContainer = document.createElement("div");
     newContainer.className = "container";
     let newTarget = prompt("How many squares per side to generate (max 100)");
-    if (newTarget >= 100 || newTarget <= 0) {
+    if (newTarget > 100 || newTarget <= 0) {
         validTarget = prompt("Please enter a valid number ( 1 to 100 )");
         newTarget = validTarget;
     };
-    if (document.querySelector(".container")) {
+    if (oldContainer) {
         display.removeChild(oldContainer);
         display.appendChild(newContainer);
     }
-    newContainer.style.cssText = "display: grid; grid-template-rows: repeat(" + newTarget +", 50px); grid-template-columns: repeat(" + newTarget +", 50px); grid-gap: 5px;";
+    newContainer.style.cssText = "width: 100%; display: grid; grid-template-rows: repeat(" + newTarget +", 1fr); grid-template-columns: repeat(" + newTarget +", 1fr); grid-gap: 5px;";
     createGridDivs(newTarget);
 });
