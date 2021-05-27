@@ -1,0 +1,27 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+.container {
+    max-width: 600px;
+    min-height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #182131;
+  }
+
+body {
+    text-align: center;
+    background: linear-gradient(#5472AB, #a3b4d2);
+}
+
+#title {
+    font: 25px sans-serif;
+}
